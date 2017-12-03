@@ -4,6 +4,7 @@
  "description": "project #2 UCB bootcamp",
  "main": "server.js",
  "scripts": {
+  "start": "node server.js",
    "test": "echo \"Error: no test specified\" && exit 1"
  },
  "author": "ashley karina patrick bohyeon",

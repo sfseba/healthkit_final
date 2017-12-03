@@ -52,8 +52,8 @@
 
 <!-- header parallax -->
 
-            <div id="startchange"></div>
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <div id="startchange"></div>
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -93,7 +93,7 @@
 
   <!-- sign up  -->
   <div class="main-text hidden-xs">
-      <div class="col-md-12 text-center">
+ <!--    <div class="col-md-12 text-center">
           <h1 class="headline">
               Lose Weight with Healthkit</h1>
           <h3>
@@ -102,7 +102,7 @@
           <div class="">
               <a class="btn btn-clear btn-sm btn-min-block" href="#signIn">Login</a><a class="btn btn-clear btn-sm btn-min-block"
                   href="#signIn">Registration</a></div>
-      </div>
+      </div> -->
   </div>
 </div>
 </div>
@@ -128,7 +128,7 @@
 <br><br><br>
 
 <div class="table-responsive">
-    <table class="table">
+    <table class="table" id="food-table">
       <thead>
         <tr id ="top">
           <th>Food</th>
@@ -163,6 +163,10 @@
 
 <div class="col-md-6">
     <form class="form">
+    <div class="form-group" id="food-data">
+      <label for="food">Food</label>
+      <input type="text" class="form-control" id="food-add">
+    </div>
     <div class="form-group">
       <label for="amount">Amount</label>
       <input type="number" class="form-control" id="food-amount">
@@ -176,8 +180,8 @@
       <input type="text" class="form-control" id="emotion-now">
     </div>
     <div class="form-group">
-      <label for="inputlg">Note</label>
-      <input type="text" class="form-control input-lg" id="note">
+      <label for="input">Note</label>
+      <input type="text" class="form-control" id="note-entry">
     </div>
     <div class="form-group">
       <input type="file" title="Search for a file to add">
@@ -231,6 +235,8 @@
   <!-- Bootstrap JavaScript CDN -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="./js/view.js"></script>
+  <script src="./js/add.js"></script>
+  <script src="./js/all.js"></script>
 </body>
 
 </html>

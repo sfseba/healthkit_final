@@ -96,7 +96,7 @@ $(function() {
 		$(this).addClass('active');
 		e.preventDefault();
 	});
-
+    $('#register-form-link').click(function(e) {
         $("#login-form").delay(100).fadeIn(100);
         $("#register-form").fadeOut(100);
         $('#register-form-link').removeClass('active');
@@ -113,7 +113,7 @@ $(function() {
 
 });
 
-a5f55347784dc892f4738fc88bc99578195b5b33
+// a5f55347784dc892f4738fc88bc99578195b5b33
 
 // $(document).ready(function(){
 //                 var scroll_start = 0;
@@ -176,26 +176,30 @@ a5f55347784dc892f4738fc88bc99578195b5b33
 //     }
 // }
 
+$( document ).ready(function() {
+    console.log( "ready!" );
+
+$(document).on("click", "#search-btn", function(){
+    callApi(this.dataset.searchStringParam)
+    console.log("click worked")
+});
+
 var authKey = "fbdHn9nhfMCQYtwg1bDsagboAdhOo2lKdaqCg0wy";
 
-var searchTerm = "";
-
-var queryURLBase = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=" + authKey + "&nutrients=208&ndbno=01009";
-
 function callApi(searchStringParam) {
-    var searchString = searchStringParam;
-    var foodUrl = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=" + authKey + "&nutrients=208&ndbno=01009",
+    console.log("function called")
+    var foodUrl = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=" + authKey + "&nutrients=208&ndbno=01009";
     $.ajax({
         url: foodUrl,
-        method: "GET"
-
-    }).done(function(response){
+        method: "GET",
+        headers: {
+            "Api-Key": "fbdHn9nhfMCQYtwg1bDsagboAdhOo2lKdaqCg0wy"
+        }
+        }).done(function(response){
         console.log(response)
     });
 }
 
-$("#search-btn").on("click", function(){
-    callApi(searchStringParam)
-})
+});
 
 

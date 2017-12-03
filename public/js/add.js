@@ -1,23 +1,43 @@
-$("#add-btn").on("click", function(event){
+$("#addSurvey").on("click", function(event){
 	event.preventDefault();
 
 	var newMeal = {
-		food: $("food").val().trim(),
-		amount: $("amount").val().trim(),
-		fullness: $("fullness").val().trim(),
-		note: $("note").val().trim()
-		picture: $("picture").val().trim()
+		food: $("#food-add").val().trim(),
+		amount: $("#food-amount").val().trim(),
+		fullness: $("#eaten-fullness").val().trim(),
+		emotion: $("#emotion-now").val().trim(),
+		note: $("#note-entry").val().trim(),
+		picture: $("#picture").val().trim()
 	};
+
+	addToTable(newMeal);
 
 	$.post("/api/new", newMeal)
 	.done(function(data){
 		console.log(data);
 	});
 
-	$("food").val("");
-	$("amount").val("");
-	$("fullness").val("");
-	$("note").val("");
-	$("picture").val("");
+	$("#food-add").val("");
+	$("#food-amount").val("");
+	$("#eaten-fullness").val("");
+	$("#emotion-now").val("");
+	$("#note-entry").val("");
+	$("#picture").val("");
 
 });
+
+
+function addToTable(meal){
+
+  var tabl = $("#food-table");
+
+ tabl.append(
+      '<tr>' + 
+          '<td>' + meal.food + '</td>' + 
+          '<td>' + meal.amount + '</td>' + 
+          '<td>' + meal.fullness + '</td>' + 
+          '<td>' + meal.emotion + '</td>' +
+          '<td>' + meal.note + '</td>' +
+      '</tr>'
+   );
+};

@@ -6,14 +6,20 @@
 //========================================
 
 //require the meal model
-var Meal = require("../models/health.js");
+var db = require('../models');
+
+// var Food = require("../models/health.js").Food;
+var Food = db.Food;
+console.log(Food);
 
 //routes
 //=========================================
 module.exports = function(app){
 	//show all meals
 	app.get("/api/all", function(req, res){
-		Meal.findAll({}).then(function(results){
+		console.log(req);
+		Food.findAll({}).then(function(results){
+			console.log(results);
 			res.json(results);
 		});
 	});
@@ -21,9 +27,9 @@ module.exports = function(app){
 	//show a specific meal based on food eaten
 	app.get("/api/:meal", function(req, res){
 		if (req.params.meal){
-			Meal.findAll({
+			Food.findAll({
 				where: {
-					foodEaten: req.params.meal
+					food: req.params.food
 				}
 			}).then(function(results){
 				res.json(results);
@@ -31,34 +37,37 @@ module.exports = function(app){
 		}
 	});
 
-	//show a specific meal based on mealtime
-	app.get("/api/:meal", function(req, res){
-		if (req.params.meal){
-			Meal.findAll({
-				where: {
-					mealtime: req.params.meal
-				}
-			}).then(function(results){
-				res.json(results);
-			});
-		}
-	});	
+	// //show a specific meal based on mealtime
+	// app.get("/api/:meal", function(req, res){
+	// 	if (req.params.meal){
+	// 		Food.findAll({
+	// 			where: {
+	// 				mealtime: req.params.
+	// 			}
+	// 		}).then(function(results){
+	// 			res.json(results);
+	// 		});
+	// 	}
+	//});	
 
 	//add a meal
 	app.post("/api/new", function(req, res){
+		console.log(req);
 
-		Meal.create({
-			mealtime: req.body.mealtime,
-			foodEaten: req.body.foodEaten,
-			calories: req.body.calories,
-			fullness: req.body.fullness
+		Food.create({
+			food: req.body.food,
+			amount: req.body.amount,
+			fullness: req.body.fullness,
+			emotion: req.body.emotion,
+			note: req.body.note,
+			picture: req.body.picture
 		});
 	})
 
 	//delete a meal
 	app.post("/api/delete", function(req, res){
 
-		Meal.destroy({
+		Food.destroy({
 			where: {
 				id: req.body.id
 			}

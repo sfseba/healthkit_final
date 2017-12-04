@@ -188,7 +188,7 @@ var authKey = "fbdHn9nhfMCQYtwg1bDsagboAdhOo2lKdaqCg0wy";
 
 function callApi(searchStringParam) {
     console.log("function called")
-    var foodUrl = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=" + authKey + "&nutrients=208&ndbno=01009";
+    var foodUrl = "https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=" + authKey + "&nutrients=208&ndbno=01009";
     $.ajax({
         url: foodUrl,
         method: "GET",

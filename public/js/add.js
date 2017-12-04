@@ -29,7 +29,7 @@ $("#addSurvey").on("click", function(event){
 
 function addToTable(meal){
 
-  var tabl = $("#food-table");
+ var tabl = $("#food-table");
 
  tabl.append(
       '<tr>' + 
@@ -41,3 +41,10 @@ function addToTable(meal){
       '</tr>'
    );
 };
+
+
+function dailyReset() {
+    $("#food-table tbody tr").remove();
+};
+
+setTimeout(dailyReset, 86400000);

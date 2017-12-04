@@ -194,7 +194,8 @@ function callApi(searchStringParam) {
         url: foodUrl,
         method: "GET",
         headers: {
-            "Api-Key": "fbdHn9nhfMCQYtwg1bDsagboAdhOo2lKdaqCg0wy"
+            "Api-Key": "fbdHn9nhfMCQYtwg1bDsagboAdhOo2lKdaqCg0wy",
+            "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token , Authorization"
         }
         }).done(function(response){
         console.log(response)

@@ -133,48 +133,11 @@ $(function() {
 
 
 
-//************************************
-//js for search button 
-//************************************
+//*******************************************
+//js for search button and add to table data
+//*******************************************
 
-// $("#search-btn").on("click", function(event){
-//     event.preventDefault();
 
-//     var foodSearch = $("#food-search").val().trim();
-
-//     $.get("/api" + foodSearch, function(data){
-//         renderFood(data);
-//     });
-// });
-
-// function renderFood(data){
-//     if (data.length !==0){
-//         $(".table").empty();
-//         $(".table").show();
-
-//         for (var i = 0; i < data.length; i++) {
-//             var div = $("<div>");
-
-//             div.append("<h2>" + data[i].food + "</h2>");
-//             div.append("<h2>" + data[i].calories + "</h2>");
-
-//             $(".table").append(div);
-//         }
-
-//         $(".delete").click(function(){
-//             var info = {
-//                 id:$(this).attr("data-id");
-//             };
-
-//             $.post(".api/delete", info)
-//             .done(function(delData){
-//                 console.log("deleted successfully");
-//             });
-
-//             $(this).closest("div").remove();
-//         })
-//     }
-// }
 
 $( document ).ready(function() {
     console.log( "ready!" );
@@ -185,44 +148,50 @@ $(document).on("click", "#search-btn", function(event){
     console.log("click worked")
 });
 
+
 var authKey = "fbdHn9nhfMCQYtwg1bDsagboAdhOo2lKdaqCg0wy";
 
 function callApi(searchStringParam) {
     console.log("function called")
+    var searchTerm = $("#food-search").val().trim();
     //var foodUrl = "https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=" + authKey + "&nutrients=208&ndbno=01009";
-    var foodUrl = "https://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=n&max=25&offset=0&api_key=" + authKey;
+    var foodUrl = "https://api.nal.usda.gov/ndb/search/?format=json&q=" + searchTerm + "&ds=Standard Reference&max=25&offset=0&api_key=" + authKey;
     console.log(foodUrl);
     $.ajax({
         url: foodUrl,
         method: "GET",
         }).done(function(response){
             console.log(response);
-
-            function addToUsda(response){
-                var usdaList = $("#usda-list");
-                $.each(response, function(idx, list) {
-                  usdaList.append('<ul>' + response.list.item.name + '</ul>');
-                });
-            };
+            $("#food-search").val("");
 
             addToUsda(response);
 
+            function addToUsda(response){
+                var usdaList = $("#usda-list");
+                $.each(response.list.item, function(idx, list) {
+                    console.log(list);
+                  usdaList.append('<ul>' + list.name + '</ul>' + '<button class="usda-select">' + "Select" + '</button>');
+                });
+            };
 
-            // addToTable(response);
-            // function addToTable(response){
+            function addUsdaToTable(selected){
+             var tabl = $("#food-table");
 
-            //  var tabl = $("#food-table");
+             tabl.append(
+                  '<tr>' + 
+                      '<td>' + selected.name + '</td>' + 
+                      '<td>' + ""+ '</td>' + 
+                      '<td>' + "" + '</td>' + 
+                      '<td>' + "" + '</td>' +
+                      '<td>' + "added from USDA" + '</td>' +
+                  '</tr>'
+               );
+            };
 
-            //  tabl.append(
-            //       '<tr>' + 
-            //           '<td>' + response.report.foods[0].name + '</td>' + 
-            //           '<td>' + response.report.foods[0].nutrients[0].value + '</td>' + 
-            //           '<td>' + "" + '</td>' + 
-            //           '<td>' + "" + '</td>' +
-            //           '<td>' + "added from USDA" + '</td>' +
-            //       '</tr>'
-            //    );
-            // };
+            $(".usda-select").on("click", function(event){
+                event.preventDefault();
+                addToUsdaTable(selected);               
+            });
 
         });
     };

@@ -179,7 +179,8 @@ $(function() {
 $( document ).ready(function() {
     console.log( "ready!" );
 
-$(document).on("click", "#search-btn", function(){
+$(document).on("click", "#search-btn", function(event){
+    event.preventDefault();
     callApi(this.dataset.searchStringParam)
     console.log("click worked")
 });

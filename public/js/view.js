@@ -189,18 +189,43 @@ var authKey = "fbdHn9nhfMCQYtwg1bDsagboAdhOo2lKdaqCg0wy";
 
 function callApi(searchStringParam) {
     console.log("function called")
-    var foodUrl = "https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=" + authKey + "&nutrients=208&ndbno=01009";
+    //var foodUrl = "https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=" + authKey + "&nutrients=208&ndbno=01009";
+    var foodUrl = "https://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=n&max=25&offset=0&api_key=" + authKey;
+    console.log(foodUrl);
     $.ajax({
         url: foodUrl,
         method: "GET",
-        headers: {
-            "Api-Key": "fbdHn9nhfMCQYtwg1bDsagboAdhOo2lKdaqCg0wy",
-            "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token , Authorization"
-        }
         }).done(function(response){
-        console.log(response)
-    });
-}
+            console.log(response);
+
+            function addToUsda(response){
+                var usdaList = $("#usda-list");
+                $.each(response, function(idx, list) {
+                  usdaList.append('<ul>' + response.list.item.name + '</ul>');
+                });
+            };
+
+            addToUsda(response);
+
+
+            // addToTable(response);
+            // function addToTable(response){
+
+            //  var tabl = $("#food-table");
+
+            //  tabl.append(
+            //       '<tr>' + 
+            //           '<td>' + response.report.foods[0].name + '</td>' + 
+            //           '<td>' + response.report.foods[0].nutrients[0].value + '</td>' + 
+            //           '<td>' + "" + '</td>' + 
+            //           '<td>' + "" + '</td>' +
+            //           '<td>' + "added from USDA" + '</td>' +
+            //       '</tr>'
+            //    );
+            // };
+
+        });
+    };
 
 });
 

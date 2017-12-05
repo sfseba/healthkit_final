@@ -164,38 +164,40 @@ function callApi(searchStringParam) {
             console.log(response);
             $("#food-search").val("");
 
-            addToUsda(response);
-
-            function addToUsda(response){
-                var usdaList = $("#usda-list");
-                $.each(response.list.item, function(idx, list) {
-                    console.log(list);
-                  usdaList.append('<ul>' + list.name + '</ul>' + '<button class="usda-select">' + "Select" + '</button>');
+            var usdaList = $("#usda-list");
+            $.each(response.list.item, function(idx, list) {
+                var button = $('<button class="usda-select">' + "Select" + '</button>');
+                button.click(function(){
+                    addUsdaToTable(list);
                 });
-            };
+                usdaList.append('<ul>' + list.name + '</ul>');
+                usdaList.append(button);
 
-            function addUsdaToTable(selected){
-             var tabl = $("#food-table");
-
-             tabl.append(
-                  '<tr>' + 
-                      '<td>' + selected.name + '</td>' + 
-                      '<td>' + ""+ '</td>' + 
-                      '<td>' + "" + '</td>' + 
-                      '<td>' + "" + '</td>' +
-                      '<td>' + "added from USDA" + '</td>' +
-                  '</tr>'
-               );
-            };
+            });
 
             $(".usda-select").on("click", function(event){
                 event.preventDefault();
-                addToUsdaTable(selected);               
+                console.log(event);
+                addUsdaToTable(selected);               
             });
 
         });
     };
 
 });
+
+function addUsdaToTable(selected){
+ var tabl = $("#food-table");
+
+ tabl.append(
+      '<tr>' + 
+          '<td>' + selected.name + '</td>' + 
+          '<td>' + "" + '</td>' + 
+          '<td>' + "" + '</td>' + 
+          '<td>' + "" + '</td>' +
+          '<td>' + "Added from USDA: " + selected.group + '</td>' +
+      '</tr>'
+   );
+};
 
 

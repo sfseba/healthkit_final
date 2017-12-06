@@ -7,7 +7,6 @@ $("#addSurvey").on("click", function(event){
 		fullness: $("#eaten-fullness").val().trim(),
 		emotion: $("#emotion-now").val().trim(),
 		note: $("#note-entry").val().trim(),
-		picture: $("#picture").val().trim()
 	};
 
 	addToTable(newMeal);
@@ -22,7 +21,7 @@ $("#addSurvey").on("click", function(event){
 	$("#eaten-fullness").val("");
 	$("#emotion-now").val("");
 	$("#note-entry").val("");
-	$("#picture").val("");
+
 
 });
 

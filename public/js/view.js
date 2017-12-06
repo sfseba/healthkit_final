@@ -176,13 +176,6 @@ function callApi(searchStringParam) {
 
             });
 
-            $(".usda-select").on("click", function(event){
-                event.preventDefault();
-                console.log(event);
-                addUsdaToTable(selected); 
-
-            });
-
         });
     };
 

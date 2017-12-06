@@ -169,6 +169,7 @@ function callApi(searchStringParam) {
                 var button = $('<button class="usda-select">' + "Select" + '</button>');
                 button.click(function(){
                     addUsdaToTable(list);
+                    usdaList.empty(); 
                 });
                 usdaList.append('<ul>' + list.name + '</ul>');
                 usdaList.append(button);
@@ -178,7 +179,8 @@ function callApi(searchStringParam) {
             $(".usda-select").on("click", function(event){
                 event.preventDefault();
                 console.log(event);
-                addUsdaToTable(selected);               
+                addUsdaToTable(selected); 
+
             });
 
         });

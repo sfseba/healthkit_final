@@ -166,12 +166,12 @@ function callApi(searchStringParam) {
 
             var usdaList = $("#usda-list");
             $.each(response.list.item, function(idx, list) {
-                var button = $('<button class="usda-select">' + "Select" + '</button>');
+                var button = $('<button class="usda-select">' + list.name + '</button>' + '<br><br>');
                 button.click(function(){
                     addUsdaToTable(list);
-                    usdaList.empty(); 
+                    usdaList.empty();
                 });
-                usdaList.append('<ul>' + list.name + '</ul>');
+                // usdaList.append('<ul>' + list.name + '</ul>');
                 usdaList.append(button);
 
             });
@@ -185,14 +185,12 @@ function addUsdaToTable(selected){
  var tabl = $("#food-table");
 
  tabl.append(
-      '<tr>' + 
-          '<td>' + selected.name + '</td>' + 
-          '<td>' + "" + '</td>' + 
-          '<td>' + "" + '</td>' + 
+      '<tr>' +
+          '<td>' + selected.name + '</td>' +
+          '<td>' + "" + '</td>' +
+          '<td>' + "" + '</td>' +
           '<td>' + "" + '</td>' +
           '<td>' + "Added from USDA: " + selected.group + '</td>' +
       '</tr>'
    );
 };
-
-

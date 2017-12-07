@@ -322,6 +322,16 @@ a {
   color: #FFC000 !important;
 }
 
+/* button */
+.usda-select {
+  color: #fff;
+  background-color: #FFC000;
+  border-radius: 0;
+  border-color: #FFC000;
+  width: 100%;
+  border: 0;
+  border-radius: 3px;
+}
 /*footer */
 #footer {
     line-height: 20px;

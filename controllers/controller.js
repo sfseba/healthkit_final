@@ -4,7 +4,7 @@
 // for all apropos http requests.
 
 var express = require("express");
-var passport = require("../config/passport");
+var passport = require("../config/passport.js");
 var request = require("request")
 var moment = require("moment");
 

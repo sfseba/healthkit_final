@@ -16,7 +16,7 @@ console.log(Food);
 //=========================================
 module.exports = function(app){
 	//show all meals
-	app.get("/api/all", function(req, res){
+	app.get("/form", function(req, res){
 		console.log(req);
 		Food.findAll({}).then(function(results){
 			console.log(results);
@@ -48,7 +48,7 @@ module.exports = function(app){
 	// 			res.json(results);
 	// 		});
 	// 	}
-	//});	
+	//});
 
 	//add a meal
 	app.post("/api/new", function(req, res){

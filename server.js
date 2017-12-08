@@ -25,6 +25,13 @@ var PORT = process.env.PORT || 8080;
 // Routes
 // =============================================================
 
+
+//for passport
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+app.use(passport.initialize());
+
+app.use(passport.session()); // persistent login sessions
+
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 // require('autoloader')(__dirname + '/src');
@@ -71,14 +78,6 @@ var authRoute = require('./routes/auth.js')(app,passport);
 
 require("./config/passport.js")(passport, db.user);
 // For Passport
-
-app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
-
-app.use(passport.initialize());
-
-app.use(passport.session()); // persistent login sessions
-
-
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
